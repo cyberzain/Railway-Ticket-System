@@ -15,10 +15,10 @@ exports.bookTicket = async (req, res) => {
         let amountPerKm = 0;
 
         if (trainType == "General") {
-            amountPerKm = 5;
+            amountPerKm = 0.5;
         }
         else {
-            amountPerKm = 10;
+            amountPerKm = 0.9;
         }
         const subTotal = distance * amountPerKm;
         const totalAmount = subTotal * nop;
