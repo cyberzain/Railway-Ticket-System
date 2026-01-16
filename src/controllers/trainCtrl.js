@@ -6,7 +6,7 @@ exports.bookTicket = async (req, res) => {
 
 
         const findRout = await Train.findOne({ trainRoute });
-        if(!findRout){
+        if (!findRout) {
             res.send("route not found");
         }
         console.log(findRout)
@@ -31,12 +31,14 @@ exports.bookTicket = async (req, res) => {
             nop: nop,
             trainRoute: trainRoute,
             totalAmount: totalAmount,
-            jDate:jDate
+            jDate: jDate
         })
-    await newBookTicket.save();
+        await newBookTicket.save();
 
 
         console.log(newBookTicket)
+        res.redirect('/bookTicket')
+
     } catch (error) {
         console.log(error);
         res.status(500).send("error")

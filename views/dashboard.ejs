@@ -20,7 +20,7 @@
                 </div>
                 <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-
+                 <% result.forEach((value)=>{ %>
                     <div class="flex items-center p-8 bg-white shadow rounded-lg">
                         <div
                             class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-blue-100 rounded-full mr-6">
@@ -31,7 +31,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">62</span>
+                            <span class="block text-2xl font-bold"><%= value.totalTickets %></span>
                             <span class="block text-gray-500">Total Ticket Booked</span>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">57000</span>
+                            <span class="block text-2xl font-bold"><%= value.totalRevenue %></span>
                             <span class="block text-gray-500">Total Revenue</span>
                         </div>
                     </div>
@@ -59,7 +59,11 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">10</span>
+           
+
+                          
+                            <span class="block text-2xl font-bold"><%= value.todayBookedTickets %></span>
+                            <% console.log({result}) %>
                             <span class="inline-block  text-gray-500">Today Booked Tickets</span>
 
                         </div>
@@ -74,10 +78,11 @@
                             </svg>
                         </div>
                         <div>
-                            <span class="block text-2xl font-bold">83%</span>
-                            <span class="block text-gray-500">Finished homeworks</span>
+                            <span class="block text-2xl font-bold"><%= value.todayRevenue %> </span>
+                            <span class="block text-gray-500">Today Revenue</span>
                         </div>
                     </div>
+                    <%  }) %>
                 </section>
             </main>
         </div>
