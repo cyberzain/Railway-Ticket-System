@@ -37,28 +37,26 @@ Quota	Dropdown (General, Tatkal, Senior Citizen) -->
                     </div>
                     <div>
                         <label class="text-white dark:text-gray-200" for="trainType">Routes</label>
-                        <select
-                            id="trainRoute"
-                            name="trainRoute"
+                        <select id="trainRoute" name="trainRoute"
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                           <% trainRoute.forEach((value)=> { %>
-                              <option value=<%= value.trainRoute %>><%= value.fromStation %> -<%= value.toStation %> </option>
-                           
-                         <%  }) %>
-                          
+                            <% trainRoute.forEach((value)=> { %>
+                                <option value=<%=value.trainRoute %>><%= value.fromStation %> -<%= value.toStation %>
+                                </option>
+
+                                <% }) %>
+
                         </select>
                     </div>
 
                     <div>
                         <label class="text-white dark:text-gray-200" for="jDate">Journey Date</label>
                         <input id="jDate" type="date" name="jDate"
+                        required
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
                     <div>
                         <label class="text-white dark:text-gray-200" for="trainType">Select Train type</label>
-                        <select
-                        id="trainType"
-                        name="trainType"
+                        <select id="trainType" name="trainType"
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                             <option value="General">General</option>
                             <option value="Express">Express</option>
@@ -67,6 +65,7 @@ Quota	Dropdown (General, Tatkal, Senior Citizen) -->
                     <div>
                         <label class="text-white dark:text-gray-200" for="noP">No of Passengers</label>
                         <input id="noP" type="number" name="nop"
+                        required
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
                     <div>
@@ -84,12 +83,92 @@ Quota	Dropdown (General, Tatkal, Senior Citizen) -->
                 </div>
             </form>
         </section>
-       <% if(showTicket){ %>
+        <% if(showTicket){ %>
+           
 
-     
-    <%- include('partials/ticketTemplate') %>
-    <%   } %>
+            
+            <div
+                id="ticketDiv"
+                class="max-w-md mx-auto mt-20 bg-white border-2 border-dashed border-gray-400 rounded-lg shadow-lg p-5 font-sans">
 
+                <!-- Header -->
+                <div class="text-center border-b pb-3 mb-4">
+                    <h2 class="text-xl font-bold text-gray-800">GENERAL TICKET</h2>
+                    <p class="text-sm text-gray-500">Indian Railways</p>
+                </div>
+
+                <!-- Ticket Info -->
+                <div class="grid grid-cols-2 gap-y-3 text-sm text-gray-700">
+
+                    <div>
+                        <p class="text-gray-500">From</p>
+                        <p class="font-semibold"><%= ticket.fromStation %></p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-500">To</p>
+                        <p class="font-semibold"><%= ticket.toStation %></p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-500">Passengers</p>
+                        <p class="font-semibold"><%= ticket.nop %></p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-500">Total Amount</p>
+                        <p class="font-semibold text-green-600"><%= ticket.totalAmount %></p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-500">Distance</p>
+                        <p class="font-semibold"><%= ticket.distance %></p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-500">Train Route ID</p>
+                        <p class="font-semibold"><%= ticket.trainRoute %></p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-500">Journey Date</p>
+                        <p class="font-semibold"><%= ticket. jDate %></p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-500">PNR</p>
+                        <p class="font-semibold tracking-widest"><%= ticket.pnr %></p>
+                    </div>
+
+                    <div class="col-span-2">
+                        <p class="text-gray-500">UTS No</p>
+                        <p class="font-semibold tracking-widest"><%= ticket.utsNo %></p>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="border-t mt-4 pt-3 text-center text-xs text-gray-500">
+                    <p>This ticket is valid only on the date of journey</p>
+                    <p class="mt-1 font-semibold text-gray-700">Happy Journey 🚆</p>
+                </div>
+                    <div class="flex justify-end mt-4">
+                    <button
+                        onclick="closeTicket()";
+                        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-black-700 focus:outline-none focus:bg-gray-600 cursor-pointer">
+                        Close</button>
+                </div>
+            </div>
+
+
+            <% } %>
+<script>
+    
+    function closeTicket(){
+        const ticketDiv = document.querySelector("#ticketDiv");
+        ticketDiv.style.display = "none";
+    }
+</script>
 </body>
 
 </html>

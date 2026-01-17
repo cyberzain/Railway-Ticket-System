@@ -20,6 +20,8 @@ exports.bookTicket = async (req, res) => {
         else {
             amountPerKm = 0.9;
         }
+        const pnr =await generatePNR();
+        const uts =await  generateUTS();
         const subTotal = distance * amountPerKm;
         const totalAmount = subTotal * nop;
         console.log(totalAmount)
@@ -31,16 +33,30 @@ exports.bookTicket = async (req, res) => {
             nop: nop,
             trainRoute: trainRoute,
             totalAmount: totalAmount,
-            jDate: jDate
+            jDate: jDate,
+            pnr: pnr,
+            utsNo:uts
         })
         await newBookTicket.save();
 
+        res.redirect(`/bookTicket?showTicket=true&ticketId=${newBookTicket._id}`);
 
-        console.log(newBookTicket)
-        res.redirect('/bookTicket')
+
 
     } catch (error) {
         console.log(error);
         res.status(500).send("error")
     }
 }
+
+
+const generatePNR = async() => {
+    const PNR = await  Math.floor(100000 + Math.random() * 900000);
+    return 'PNR' + PNR;
+}
+
+const generateUTS = async () => {
+    const UTS = await Math.floor(100000 + Math.random() * 900000);
+    return 'UTS' + UTS;
+}
+
