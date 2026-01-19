@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
         default: 'staff'
     },
 
+    address:{
+        type: String,
+        default:"Parbhani"
+    },
     accessToken: {
         type: String,
     }

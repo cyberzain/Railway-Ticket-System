@@ -10,7 +10,12 @@ const bookedTicketSchema = new mongoose.Schema({
     trainRoute: Number,
     totalAmount: Number,
     pnr: String,
-    utsNo: String
+    utsNo: String,
+
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+         ref: "User"
+    }
 }, {
     timestamps: true
 });

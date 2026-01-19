@@ -73,7 +73,8 @@ router.get("/bookTicket", async (req, res) => {
 
 router.get("/bookTicketList", async (req, res) => {
   const pnr = req.query.pnr;
-  const ticket = await bookedTicketsModel.find({pnr}).sort({ createdAt: -1 });
+  const userId = req.user.userId;
+  const ticket = await bookedTicketsModel.find({userId}).sort({ createdAt: -1 });
   res.render("bookTicketList", { ticket });
 })
 
@@ -84,5 +85,13 @@ router.get("/bookedTicket/:id", async (req, res) => {
   let findTicket = null;
   findTicket = await bookedTicketsModel.findById(ticketId);
   res.render("ticketPage", { ticket: findTicket })
+})
+
+router.get("/profile", async (req, res) =>{
+  const user = req.user;
+  console.log(user);
+  const findUser = await User.findById(user.userId);
+  console.log(findUser);
+  res.render("profile",{findUser});
 })
 module.exports = router;

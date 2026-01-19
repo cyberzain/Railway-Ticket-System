@@ -3,7 +3,7 @@ const bookTicket = require("../model/bookedTicketModel");
 exports.bookTicket = async (req, res) => {
     try {
         const { fStation, tStation, trainRoute, jDate, trainType, nop, tAmount } = req.body;
-
+        const userId = req.user.userId;
 
         const findRout = await Train.findOne({ trainRoute });
         if (!findRout) {
@@ -35,7 +35,8 @@ exports.bookTicket = async (req, res) => {
             totalAmount: totalAmount,
             jDate: jDate,
             pnr: pnr,
-            utsNo:uts
+            utsNo:uts,
+            userId:userId
         })
         await newBookTicket.save();
 
